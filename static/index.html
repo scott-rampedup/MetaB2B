@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MetaB2B</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 24px; }
+      .card { background: #1e293b; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+      h1, h2 { margin: 0 0 12px; }
+      label { display: block; margin: 10px 0 4px; font-size: 14px; }
+      input, textarea, button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0b1220; color: #f8fafc; }
+      textarea { min-height: 90px; }
+      button { cursor: pointer; background: #2563eb; border: none; margin-top: 10px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .status { padding: 10px; border-radius: 8px; margin-top: 10px; background: #0b1220; }
+      pre { white-space: pre-wrap; background: #020617; padding: 12px; border-radius: 8px; }
+      @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>MetaB2B Audience Match + AI Ad Builder</h1>
+      <div id="serverStatus" class="card" style="border:1px solid #334155;">
+        Checking backend status...
+      </div>
+
+      <div class="card">
+        <h2>1) Connect Meta Credentials</h2>
+        <div class="row">
+          <div>
+            <label>Meta Access Token</label>
+            <input id="accessToken" type="password" placeholder="EAAB..." />
+          </div>
+          <div>
+            <label>Ad Account ID</label>
+            <input id="adAccountId" placeholder="act_123456789" />
+          </div>
+        </div>
+        <button id="validateMetaBtn">Validate Meta Connection</button>
+        <div id="metaStatus" class="status">Not validated yet.</div>
+      </div>
+
+      <div class="card">
+        <h2>2) Upload Emails to Custom Audience</h2>
+        <label>Audience Name</label>
+        <input id="audienceName" placeholder="Q4 Retargeting - Existing Leads" />
+        <label>Email List (.csv or .txt)</label>
+        <input id="emailFile" type="file" accept=".csv,.txt" />
+        <button id="uploadAudienceBtn">Create Audience + Upload Emails</button>
+        <div id="uploadStatus" class="status">No upload started.</div>
+      </div>
+
+      <div class="card">
+        <h2>3) AI Ad Generator</h2>
+        <label>Campaign Objective</label>
+        <input id="objective" placeholder="Generate qualified demo requests" />
+        <label>Audience Description</label>
+        <textarea id="audienceDescription" placeholder="Decision-makers in SaaS companies with 50-500 employees"></textarea>
+        <label>Offer</label>
+        <textarea id="offer" placeholder="Free 14-day trial with onboarding consultation"></textarea>
+        <div class="row">
+          <div>
+            <label>Tone</label>
+            <input id="tone" value="professional" />
+          </div>
+          <div>
+            <label>Call to Action</label>
+            <input id="cta" value="Learn more" />
+          </div>
+        </div>
+        <button id="generateAdBtn">Generate Ad Copy</button>
+        <pre id="aiOutput">Ad output will appear here.</pre>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
